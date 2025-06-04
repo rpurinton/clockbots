@@ -228,3 +228,5 @@ This project is licensed under the [MIT](LICENSE) License.
 
 Email: <russell.purinton@gmail.com>
 Discord: laozi101
+
+README Updated 6/4/2025
