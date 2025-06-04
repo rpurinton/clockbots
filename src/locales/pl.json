@@ -1,3 +1,7 @@
 {
-    "help": "To jest tekst pomocy."
+    "help": "**Pomoc Clockbot**\n\nClockbot wyświetla bieżącą datę i godzinę jako swój status.\n\n**Polecenia:**\n\n- `!time` — Pokaż bieżącą datę i godzinę na czacie.\n- `!sun` — Sprawdź aktualne godziny wschodu i zachodu słońca dla Twojej lokalizacji.\n\n**Kod źródłowy i wsparcie:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Wschód słońca",
+    "sunset": "Zachód słońca",
+    "daylight": "Światło dzienne",
+    "sun_error": "Nie udało się pobrać godzin wschodu/zachodu słońca :(..."
 }

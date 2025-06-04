@@ -1,3 +1,7 @@
 {
-    "help": "Aceasta este descrierea de ajutor."
+    "help": "**Ajutor Clockbot**\n\nClockbot afișează data și ora curente ca stare.\n\n**Comenzi:**\n\n- `!time` — Afișează data și ora curente în chat.\n- `!sun` — Caută orele actuale de răsărit și apus pentru locația ta.\n\n**Cod sursă & suport:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Răsărit",
+    "sunset": "Apus",
+    "daylight": "Lumina zilei",
+    "sun_error": "Nu s-au putut prelua orele de răsărit/apus :(..."
 }

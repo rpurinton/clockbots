@@ -1,3 +1,7 @@
 {
-    "help": "이것은 도움말 텍스트입니다."
+    "help": "**Clockbot 도움말**\n\nClockbot은 현재 날짜와 시간을 상태로 표시합니다.\n\n**명령어:**\n\n- `!time` — 채팅에 현재 날짜와 시간을 표시합니다.\n- `!sun` — 내 위치의 일출 및 일몰 시간을 확인합니다.\n\n**소스 코드 및 지원:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "일출",
+    "sunset": "일몰",
+    "daylight": "주간",
+    "sun_error": "일출/일몰 시간 가져오기 실패 :(..."
 }

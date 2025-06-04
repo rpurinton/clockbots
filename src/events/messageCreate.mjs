@@ -5,7 +5,14 @@ import { getMsg } from '../locales.mjs';
 export default async function (message) {
     log.debug('messageCreate', { message });
     if (message.author.bot) return;
-    if (message.content === '!ping') {
-        message.reply('Pong!');
+    if (message.content === '!time') {
+        const handler = (await import('../commands/time.mjs')).default;
+        await handler(message);
+        return;
+    }
+    if (message.content === '!sun') {
+        const handler = (await import('../commands/sun.mjs')).default;
+        await handler(message);
+        return;
     }
 }

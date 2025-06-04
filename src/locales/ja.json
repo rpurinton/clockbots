@@ -1,3 +1,7 @@
 {
-    "help": "これはヘルプテキストです。"
+    "help": "**Clockbot ヘルプ**\n\nClockbot は現在の日付と時刻をステータスとして表示します。\n\n**コマンド:**\n\n- `!time` — チャットに現在の日付と時刻を表示します。\n- `!sun` — あなたの場所の現在の日の出と日の入り時刻を調べます。\n\n**ソースコード & サポート:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "日の出",
+    "sunset": "日の入り",
+    "daylight": "日中",
+    "sun_error": "日の出/日の入り時刻の取得に失敗しました :(..."
 }

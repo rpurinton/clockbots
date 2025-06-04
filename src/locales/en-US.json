@@ -1,3 +1,7 @@
 {
-    "help": "This is the help text."
+    "help": "**Clockbot Help**\n\nClockbot displays the current date and time as its presence/status.\n\n**Commands:**\n\n- `!time` — Show the current date and time in chat.\n- `!sun` — Look up the current sunrise and sunset times for your location.\n\n**Source code & support:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "daylight": "Daylight",
+    "sun_error": "Failed to fetch sunrise/sunset times :(..."
 }

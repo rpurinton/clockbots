@@ -1,3 +1,7 @@
 {
-    "help": "Questo è il testo di aiuto."
+    "help": "**Aiuto Clockbot**\n\nClockbot mostra la data e l'ora correnti come stato.\n\n**Comandi:**\n\n- `!time` — Mostra la data e l'ora correnti in chat.\n- `!sun` — Cerca l'orario di alba e tramonto per la tua posizione.\n\n**Codice sorgente & supporto:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Alba",
+    "sunset": "Tramonto",
+    "daylight": "Luce del giorno",
+    "sun_error": "Impossibile recuperare gli orari di alba/tramonto :(..."
 }

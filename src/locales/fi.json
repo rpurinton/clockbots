@@ -1,3 +1,7 @@
 {
-    "help": "Tämä on ohjeteksti."
+    "help": "**Clockbot-ohje**\n\nClockbot näyttää nykyisen päivämäärän ja kellonajan tilassaan.\n\n**Komennot:**\n\n- `!time` — Näytä nykyinen päivämäärä ja kellonaika chatissa.\n- `!sun` — Hae nykyinen auringonnousu- ja -laskuaika sijainnillesi.\n\n**Lähdekoodi & tuki:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Auringonnousu",
+    "sunset": "Auringonlasku",
+    "daylight": "Päivänvalo",
+    "sun_error": "Auringonnousu-/laskuaikojen haku epäonnistui :(..."
 }

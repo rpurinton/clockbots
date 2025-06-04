@@ -1,3 +1,7 @@
 {
-    "help": "Bu yardım metnidir."
+    "help": "**Clockbot Yardım**\n\nClockbot mevcut tarih ve saati durumunda gösterir.\n\n**Komutlar:**\n\n- `!time` — Sohbette mevcut tarih ve saati gösterir.\n- `!sun` — Konumunuz için güncel gün doğumu ve gün batımı saatlerini arar.\n\n**Kaynak kodu & destek:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Gündoğumu",
+    "sunset": "Günbatımı",
+    "daylight": "Gündüz",
+    "sun_error": "Gündoğumu/günbatımı saatleri alınamadı :(..."
 }

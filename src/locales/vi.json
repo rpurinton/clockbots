@@ -1,3 +1,7 @@
 {
-    "help": "Đây là văn bản trợ giúp."
+    "help": "**Trợ giúp Clockbot**\n\nClockbot hiển thị ngày và giờ hiện tại làm trạng thái của mình.\n\n**Lệnh:**\n\n- `!time` — Hiển thị ngày và giờ hiện tại trong trò chuyện.\n- `!sun` — Tra cứu thời gian mặt trời mọc và lặn hiện tại cho vị trí của bạn.\n\n**Mã nguồn & hỗ trợ:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Bình minh",
+    "sunset": "Hoàng hôn",
+    "daylight": "Ánh sáng ban ngày",
+    "sun_error": "Không thể lấy thời gian mặt trời mọc/lặn :(..."
 }

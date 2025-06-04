@@ -1,3 +1,7 @@
 {
-    "help": "Ez a súgószöveg."
+    "help": "**Clockbot súgó**\n\nA Clockbot az aktuális dátumot és időt jeleníti meg állapotként.\n\n**Parancsok:**\n\n- `!time` — Megjeleníti az aktuális dátumot és időt a csevegésben.\n- `!sun` — Megkeresi a napkelte és napnyugta aktuális időpontját a helyedhez.\n\n**Forráskód és támogatás:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Napkelte",
+    "sunset": "Napnyugta",
+    "daylight": "Nappali fény",
+    "sun_error": "Nem sikerült lekérni a napkelte/napnyugta időpontját :(..."
 }

@@ -1,3 +1,7 @@
 {
-    "help": "Este es el texto de ayuda."
+    "help": "**Ayuda de Clockbot**\n\nClockbot muestra la fecha y hora actual como su presencia/estado.\n\n**Comandos:**\n\n- `!time` — Muestra la fecha y hora actual en el chat.\n- `!sun` — Busca la hora actual de salida y puesta del sol para tu ubicación.\n\n**Código fuente y soporte:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Amanecer",
+    "sunset": "Atardecer",
+    "daylight": "Luz del día",
+    "sun_error": "No se pudo obtener la hora de salida/puesta del sol :(..."
 }

@@ -1,3 +1,7 @@
 {
-    "help": "Ovo je tekst pomoći."
+    "help": "**Clockbot pomoć**\n\nClockbot prikazuje trenutni datum i vrijeme kao svoj status.\n\n**Naredbe:**\n\n- `!time` — Prikaži trenutni datum i vrijeme u chatu.\n- `!sun` — Pronađi trenutno vrijeme izlaska i zalaska sunca za tvoju lokaciju.\n\n**Izvorni kod i podrška:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Izlazak sunca",
+    "sunset": "Zalazak sunca",
+    "daylight": "Dnevna svjetlost",
+    "sun_error": "Neuspješno dohvaćanje vremena izlaska/zalaska sunca :(..."
 }

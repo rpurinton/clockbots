@@ -1,3 +1,7 @@
 {
-    "help": "Dette er hjelpeteksten."
+    "help": "**Clockbot-hjelp**\n\nClockbot viser gjeldende dato og klokkeslett som sin status.\n\n**Kommandoer:**\n\n- `!time` — Vis gjeldende dato og klokkeslett i chatten.\n- `!sun` — Finn dagens soloppgang og solnedgang for din posisjon.\n\n**Kildekode & støtte:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Soloppgang",
+    "sunset": "Solnedgang",
+    "daylight": "Dagslys",
+    "sun_error": "Kunne ikke hente tider for soloppgang/solnedgang :(..."
 }

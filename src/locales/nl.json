@@ -1,3 +1,7 @@
 {
-    "help": "Dit is de helptekst."
+    "help": "**Clockbot Help**\n\nClockbot toont de huidige datum en tijd als zijn status.\n\n**Commando's:**\n\n- `!time` — Toon de huidige datum en tijd in de chat.\n- `!sun` — Zoek de huidige zonsopgang- en zonsondergangtijden voor jouw locatie op.\n\n**Broncode & ondersteuning:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Zonsopgang",
+    "sunset": "Zonsondergang",
+    "daylight": "Daglicht",
+    "sun_error": "Ophalen van zonsopgang/zonsondergang mislukt :(..."
 }

@@ -1,3 +1,7 @@
 {
-    "help": "Este é o texto de ajuda."
+    "help": "**Ajuda do Clockbot**\n\nO Clockbot exibe a data e hora atual como seu status.\n\n**Comandos:**\n\n- `!time` — Mostra a data e hora atual no chat.\n- `!sun` — Consulta os horários atuais do nascer e pôr do sol para sua localização.\n\n**Código-fonte & suporte:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Nascer do sol",
+    "sunset": "Pôr do sol",
+    "daylight": "Luz do dia",
+    "sun_error": "Falha ao buscar horários de nascer/pôr do sol :(..."
 }

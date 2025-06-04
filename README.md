@@ -1,17 +1,19 @@
-# skeleton
+# clockbots
 
-A modern Discord.js app template supporting locales, events, and slash commands.
+`Clockbots` is a simple Discord.js app for displaying the time and sunrise/sunset.
+
+This project is forked from, and tracks upstream changes from, the [Skeleton](https://github.com/rpurinton/skeleton) framework.
 
 ---
 
 ## Features
 
-- **Easy command and event registration**: Just drop files in the right folders.
-- **Locale support**: Add or edit language files in `src/locales/`.
-- **Graceful shutdown and error handling**.
-- **Winston-based logging**.
-- **Environment-based configuration**.
-- **Systemd service template for production deployment**.
+- Updates app Presence/Status with current time for specified timezone
+- Displays the best hour/half-hour clock emoji
+- Supports running multiple Discord apps, each with its own specific location/timezone (uses systemd templates)
+- `/time` and `!time` to display the current time in chat
+- `/sun` and `!sun` to display current sunrise/sunset times (Requires a free OpenWeatherMap API key)
+- Easily extensible with custom commands and events
 
 ---
 
@@ -19,51 +21,120 @@ A modern Discord.js app template supporting locales, events, and slash commands.
 
 ### 1. Fork this repository
 
-It's recommended to [fork](https://github.com/rpurinton/skeleton/fork) this repo to your own GitHub account before making changes. This allows you to pull upstream updates easily.
+It's recommended to [fork](https://github.com/rpurinton/clockbots/fork) this repo to your own GitHub account before making changes. This allows you to pull upstream updates easily.
 
 ### 2. Clone your fork
 
 ```sh
-# Replace <your-username> and <your-repo> with your GitHub info
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+# Replace <your-username> with your GitHub info
+cd /opt
+git clone https://github.com/<your-username>/clockbots.git
+cd clockbots
 ```
 
-### 3. Rename for your project
-
-- Rename `skeleton.mjs` to your app's main file name (e.g., `myapp.mjs`).
-- Rename `skeleton.service` to match your app (e.g., `myapp.service`).
-- Update `package.json` with your own project name, description, author, and repository info.
-
-### 4. Install dependencies
+### 3. Install dependencies
 
 ```sh
+cd /opt/clockbots
 npm install
 ```
 
-### 5. Configure environment
+### 4. Configure environment
 
-Copy `.env.example` to `.env` if it exists, or create a `.env` file with your settings:
+Copy `.env.example` to `.env.<identifier>`
+
+For this example, we will run two different Discord apps simultaneously.
 
 ```sh
-cp .env.example .env
+cd /opt/clockbots
+cp .env.example .env.nyc
+cp .env.example .env.la
 ```
 
-Edit the `.env` file:
+Edit the `.env.nyc` file (replace values as needed):
 
 ```env
-DISCORD_TOKEN=your-app-token
-DISCORD_CLIENT_ID=your-client-id
 LOG_LEVEL=info
+DISCORD_CLIENT_ID=your_id_for_nyc_app
+DISCORD_TOKEN=your_token_for_nyc_app
+OWM_API_KEY=your_key
+TIMEZONE=America/New_York
+LOCATION_CITY=New York
+LOCATION_STATE=NY
+LOCATION_COUNTRY=USA
+LOCATION_LAT=40.7128
+LOCATION_LON=-74.0060
 ```
 
-### 6. Run the app
+Edit the `.env.la` file (replace values as needed):
+
+```env
+LOG_LEVEL=info
+DISCORD_CLIENT_ID=your_id_for_la_app
+DISCORD_TOKEN=your_token_for_la_app
+OWM_API_KEY=your_key
+TIMEZONE=America/Los_Angeles
+LOCATION_CITY=Los Angeles
+LOCATION_STATE=CA
+LOCATION_COUNTRY=USA
+LOCATION_LAT=34.0522
+LOCATION_LON=-118.2437
+```
+
+### 5. Run Tests (Optional)
+
+To confirm everything is in good working order, run:
 
 ```sh
-node skeleton.mjs
-# or, if renamed:
-node myapp.mjs
+cd /opt/clockbots
+npm test
 ```
+
+### 6. Set up systemd unit template file
+
+To run your app as a service on Linux, use the provided `clockbot@.service` unit file.
+
+Edit the service file as needed:
+
+- Set `WorkingDirectory`, `ExecStart`, and `EnvironmentFile` to your app's location and main file if different.
+- Use absolute paths.
+- Change `User` and `Group` to a non-root user for security.
+
+Example `clockbot@.service`:
+
+```ini
+[Unit]
+Description=clockbot %i
+After=network-online.target
+Wants=network-online.target
+StartLimitBurst=3
+StartLimitIntervalSec=60
+
+[Service]
+User=appuser
+Group=appgroup
+RestartSec=5
+Restart=on-failure
+WorkingDirectory=/opt/clockbots
+ExecStart=/opt/clockbots/clockbot.mjs
+EnvironmentFile=/opt/clockbots/.env.%i
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Instructions:**
+
+1. Copy the service file and start the services:
+
+   ```sh
+   sudo cp clockbot\@.service /usr/lib/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl enable clockbot@nyc.service --now
+   sudo systemctl enable clockbot@la.service --now
+   sudo systemctl status clockbot@nyc.service
+   sudo systemctl status clockbot@la.service
+   ```
 
 ---
 
@@ -116,7 +187,7 @@ export default (message) => {
 ### Logging
 
 - Logging is handled by Winston.
-- Set `LOG_LEVEL` in your `.env` (`debug`, `info`, `warn`, `error`).
+- Set `LOG_LEVEL` in your `.env` file to one of: `debug`, `info`, `warn`, or `error`.
 
 ### Error Handling & Shutdown
 
@@ -126,63 +197,11 @@ export default (message) => {
 
 ---
 
-## Systemd Service Setup
-
-To run your app as a service on Linux, use the provided `skeleton.service` file.
-
-**Update the paths and names to match your project.**
-
-Example `skeleton.service`:
-
-```ini
-[Unit]
-Description=skeleton
-After=network-online.target
-Wants=network-online.target
-StartLimitBurst=3
-StartLimitIntervalSec=60
-
-[Service]
-User=appuser
-Group=appgroup
-RestartSec=5
-Restart=on-failure
-WorkingDirectory=/opt/skeleton
-ExecStart=/usr/bin/node /opt/skeleton/skeleton.mjs
-EnvironmentFile=/opt/skeleton/.env
-
-[Install]
-WantedBy=multi-user.target
-```
-
-**Instructions:**
-
-1. Copy and rename the service file:
-
-   ```sh
-   sudo cp skeleton.service /etc/systemd/system/myapp.service
-   ```
-
-2. Edit the service file:
-   - Set `WorkingDirectory` and `ExecStart` to your app's location and main file (use absolute paths).
-   - Set `EnvironmentFile` to your `.env` location.
-   - Change `User` and `Group` to a non-root user for security.
-
-3. Reload systemd and enable the service:
-
-   ```sh
-   sudo systemctl daemon-reload
-   sudo systemctl enable myapp.service
-   sudo systemctl start myapp.service
-   sudo systemctl status myapp.service
-   ```
-
----
-
 ## Folder Structure
 
 ```text
 src/
+  custom/      # Custom code for clockbots
   commands/    # Command definitions and handlers
   events/      # Event handlers
   locales/     # Locale JSON files
@@ -203,7 +222,7 @@ src/
 
 ## License
 
-MIT
+This project is licensed under the [MIT](LICENSE) License.
 
 ## Developer Support
 

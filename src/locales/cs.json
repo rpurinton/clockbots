@@ -1,3 +1,7 @@
 {
-    "help": "Ez a súgószöveg."
+    "help": "**Nápověda Clockbot**\n\nClockbot zobrazuje aktuální datum a čas jako svůj stav.\n\n**Příkazy:**\n\n- `!time` — Zobrazí aktuální datum a čas v chatu.\n- `!sun` — Zobrazí aktuální časy východu a západu slunce pro vaši polohu.\n\n**Zdrojový kód a podpora:**\n<https://github.com/rpurinton/clockbots>\n",
+    "sunrise": "Východ slunce",
+    "sunset": "Západ slunce",
+    "daylight": "Denní světlo",
+    "sun_error": "Nepodařilo se získat časy východu/západu slunce :(..."
 }
