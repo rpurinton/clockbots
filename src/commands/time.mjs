@@ -5,18 +5,28 @@ import { getClockEmoji } from '../custom/emoji.mjs';
 import { getOffsetStr, formatFullTime } from '../custom/format.mjs';
 
 // Handles the !time & /time commands
-export default async function (message) {
+// Refactored to accept logger, clockEmoji, formatFullTime, and getOffsetStr for testability
+export default async function (
+  message,
+  {
+    logger = log,
+    getClockEmojiDep = getClockEmoji,
+    formatFullTimeDep = formatFullTime,
+    getOffsetStrDep = getOffsetStr,
+    momentDep = moment
+  } = {}
+) {
   const timezone = process.env.TIMEZONE || 'UTC';
   const now = new Date();
   try {
-    const emoji = getClockEmoji(
-      parseInt(moment(now).tz(timezone).format('H'), 10),
-      parseInt(moment(now).tz(timezone).format('m'), 10)
+    const emoji = getClockEmojiDep(
+      parseInt(momentDep(now).tz(timezone).format('H'), 10),
+      parseInt(momentDep(now).tz(timezone).format('m'), 10)
     );
-    const formattedTime = formatFullTime(now, timezone);
-    const offsetStr = getOffsetStr(now, timezone);
+    const formattedTime = formatFullTimeDep(now, timezone);
+    const offsetStr = getOffsetStrDep(now, timezone);
     await message.reply(`${emoji} ${formattedTime} (${offsetStr})`);
   } catch (err) {
-    log.error('Failed to respond to !time:', err);
+    logger.error('Failed to respond to !time:', err);
   }
 }

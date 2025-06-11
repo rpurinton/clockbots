@@ -5,15 +5,15 @@ import { fetchSun } from '../custom/sun.mjs';
 import moment from 'moment-timezone';
 
 // Command handler for !sun 
-// Refactored to accept fetchSun as a dependency for testability
-export default async function (message, fetchSunDep = fetchSun) {
+// Refactored to accept fetchSun and logger as dependencies for testability
+export default async function (message, fetchSunDep = fetchSun, logger = log) {
   try {
     const locale = message.guild.preferredLocale || 'en-US';
     const timezone = process.env.TIMEZONE || 'UTC';
     const latitude = process.env.LOCATION_LAT;
     const longitude = process.env.LOCATION_LON;
     if (!latitude || !longitude) {
-      log.error('Location not configured.');
+      logger.error('Location not configured.');
       return;
     }
     const data = await fetchSunDep(latitude, longitude);
@@ -27,16 +27,16 @@ export default async function (message, fetchSunDep = fetchSun) {
     const daylightHours = Math.floor(daylightSeconds / 3600);
     const daylightMinutes = Math.floor((daylightSeconds % 3600) / 60);
     const daylightStr = `${daylightHours}h ${daylightMinutes}m`;
-    const sunriseLbl = getMsg(locale, 'sunrise', 'Sunrise');
-    const sunsetLbl = getMsg(locale, 'sunset', 'Sunset');
-    const daylightLbl = getMsg(locale, 'daylight', 'Daylight');
+    const sunriseLbl = getMsg(locale, 'sunrise', 'Sunrise', logger);
+    const sunsetLbl = getMsg(locale, 'sunset', 'Sunset', logger);
+    const daylightLbl = getMsg(locale, 'daylight', 'Daylight', logger);
     await message.reply(
       `${sunriseLbl}: ${sunriseStr} (${sunriseDiscord})\n${sunsetLbl}: ${sunsetStr} (${sunsetDiscord})\n${daylightLbl}: ${daylightStr}`
     );
   } catch (err) {
-    log.error('Failed to respond to !sun:', err);
+    logger.error('Failed to respond to !sun:', err);
     const locale = message.guild.preferredLocale || 'en-US';
-    const errorMsg = getMsg(locale, 'sun_error', 'Failed to fetch sunrise/sunset times.');
+    const errorMsg = getMsg(locale, 'sun_error', 'Failed to fetch sunrise/sunset times.', logger);
     await message.reply(errorMsg);
   }
 }

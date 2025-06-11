@@ -9,6 +9,9 @@ const mockMessage = () => {
     return obj;
 };
 
+// Mock logger that suppresses output
+const defaultLogger = { error: jest.fn(), warn: jest.fn(), info: jest.fn(), debug: jest.fn() };
+
 describe('sun command handler', () => {
     beforeEach(() => {
         jest.clearAllMocks();
@@ -27,7 +30,7 @@ describe('sun command handler', () => {
         process.env.LOCATION_LAT = '1';
         process.env.LOCATION_LON = '2';
         const message = mockMessage();
-        await sunHandler(message, mockFetchSun); // Pass function directly
+        await sunHandler(message, mockFetchSun, defaultLogger); // Pass logger
         expect(message.reply).toHaveBeenCalledWith(
             expect.stringContaining('Sunrise: 08:00') // Adjusted to match actual output
         );
@@ -45,7 +48,7 @@ describe('sun command handler', () => {
         process.env.LOCATION_LAT = '1';
         process.env.LOCATION_LON = '2';
         const message = mockMessage();
-        await sunHandler(message, mockFetchSun); // Pass function directly
+        await sunHandler(message, mockFetchSun, defaultLogger); // Pass logger
         expect(message.reply).toHaveBeenCalledWith(
             expect.stringContaining('Failed to fetch sunrise/sunset times')
         );
@@ -56,7 +59,7 @@ describe('sun command handler', () => {
         process.env.LOCATION_LAT = '';
         process.env.LOCATION_LON = '';
         const message = mockMessage();
-        await sunHandler(message, mockFetchSun); // Pass function directly
+        await sunHandler(message, mockFetchSun, defaultLogger); // Pass logger
         expect(message.reply).not.toHaveBeenCalled();
         expect(mockFetchSun).not.toHaveBeenCalled();
     });
